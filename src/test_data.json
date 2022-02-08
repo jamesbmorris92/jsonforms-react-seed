@@ -1,0 +1,675 @@
+{
+  "schemaVersion": "0.6",
+  "rtengViBatchSolutionFactoryConfiguration": {
+    "sourceEntities": [
+      {
+        "name": "application",
+        "type": "external",
+        "inputTable": "application",
+        "idCode": "AP",
+        "inputTables": [
+          {
+            "name": "application",
+            "sourceTableType": "entity",
+            "idCode": "A",
+            "description": "Applicant",
+            "primaryKeyFieldName": "documentid",
+            "primaryKeyFieldLength": 20,
+            "lastUpdatedAtTimeFieldName": "lastmoddate",
+            "recordIdFieldName": "documentid",
+            "recordIdFieldLength": 20,
+            "recordIdCode": "A",
+            "inputFields": [
+              {
+                "name": "idnumber",
+                "dataType": "STRING",
+                "length": 17
+              },
+              {
+                "name": "forename",
+                "dataType": "STRING",
+                "length": 40
+              },
+              {
+                "name": "foreinit",
+                "dataType": "STRING",
+                "length": 1
+              },
+              {
+                "name": "middlename",
+                "dataType": "STRING",
+                "length": 40
+              },
+              {
+                "name": "middleinit",
+                "dataType": "STRING",
+                "length": 1
+              },
+              {
+                "name": "surname",
+                "dataType": "STRING",
+                "length": 40
+              },
+              {
+                "name": "fullname",
+                "dataType": "STRING",
+                "length": 80
+              },
+              {
+                "name": "dob",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "ssn",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "address",
+                "dataType": "STRING",
+                "length": 100
+              },
+              {
+                "name": "city",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "state",
+                "dataType": "STRING",
+                "length": 2
+              },
+              {
+                "name": "zip",
+                "dataType": "STRING",
+                "length": 12
+              },
+              {
+                "name": "zipplus4",
+                "dataType": "STRING",
+                "length": 12
+              },
+              {
+                "name": "phonenum",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "email",
+                "dataType": "STRING",
+                "length": 40
+              },
+              {
+                "name": "accountnumber",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "ipaddress",
+                "dataType": "STRING",
+                "length": 15
+              },
+              {
+                "name": "hostname",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "pcnumber",
+                "dataType": "STRING",
+                "length": 35
+              },
+              {
+                "name": "createdate",
+                "dataType": "TIMESTAMP"
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "application_guarantor",
+            "sourceTableName": "application",
+            "sourceTableType": "entity",
+            "idCode": "G",
+            "description": "Application Guarantor",
+            "primaryKeyFieldName": "documentid",
+            "primaryKeyFieldLength": 20,
+            "lastUpdatedAtTimeFieldName": "lastmoddate",
+            "recordIdFieldName": "documentid",
+            "recordIdFieldLength": 20,
+            "recordIdCode": "G",
+            "inputFields": [
+              {
+                "name": "gua_ssn",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "gua_fullname",
+                "dataType": "STRING",
+                "length": 128
+              },
+              {
+                "name": "gua_forename",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "gua_middlename",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "gua_surname",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "gua_dob",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "gua_email",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "gua_phonenum",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "gua_address",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "gua_city",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "gua_state",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "gua_zip",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "createdate",
+                "dataType": "TIMESTAMP"
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "application_referee",
+            "sourceTableName": "application",
+            "sourceTableType": "entity",
+            "idCode": "R",
+            "description": "Application Referee",
+            "primaryKeyFieldName": "documentid",
+            "primaryKeyFieldLength": 20,
+            "lastUpdatedAtTimeFieldName": "lastmoddate",
+            "recordIdFieldName": "documentid",
+            "recordIdFieldLength": 20,
+            "recordIdCode": "R",
+            "inputFields": [
+              {
+                "name": "ref_ssn",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "ref_fullname",
+                "dataType": "STRING",
+                "length": 128
+              },
+              {
+                "name": "ref_forename",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "ref_middlename",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "ref_surname",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "ref_dob",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "ref_email",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "ref_phonenum",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "ref_address",
+                "dataType": "STRING",
+                "length": 64
+              },
+              {
+                "name": "ref_city",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "ref_state",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "ref_zip",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "createdate",
+                "dataType": "TIMESTAMP"
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          }
+        ]
+      },
+      {
+        "name": "watchlist",
+        "type": "internal",
+        "inputTable": "watchlist",
+        "versionNumberFieldName": "version",
+        "idCode": "WL",
+        "deleteTableName": "watchlist",
+        "inputTables": [
+          {
+            "name": "watchlist",
+            "sourceTableType": "entity",
+            "idCode": "W",
+            "description": "WL Person",
+            "primaryKeyFieldName": "watchlist_id",
+            "primaryKeyFieldLength": 36,
+            "lastUpdatedAtTimeFieldName": "last_updated_at_dttm",
+            "recordIdFieldName": "watchlist_id",
+            "recordIdFieldLength": 36,
+            "recordIdCode": "W",
+            "inputFields": [
+              {
+                "name": "wl_idnumber",
+                "dataType": "STRING",
+                "length": 17
+              },
+              {
+                "name": "wl_forename",
+                "dataType": "STRING",
+                "length": 40
+              },
+              {
+                "name": "wl_middlename",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "wl_surname",
+                "dataType": "STRING",
+                "length": 40
+              },
+              {
+                "name": "wl_dob",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "wl_ssn",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "wl_address",
+                "dataType": "STRING",
+                "length": 100
+              },
+              {
+                "name": "wl_city",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "wl_state",
+                "dataType": "STRING",
+                "length": 2
+              },
+              {
+                "name": "wl_zip",
+                "dataType": "STRING",
+                "length": 12
+              },
+              {
+                "name": "wl_email",
+                "dataType": "STRING",
+                "length": 40
+              },
+              {
+                "name": "wl_phonenum",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "created_at_dttm",
+                "dataType": "TIMESTAMP"
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          }
+        ]
+      },
+      {
+        "name": "test_internal_person",
+        "type": "internal",
+        "inputTable": "test_internal_person",
+        "idCode": "TI",
+        "inputTables": [
+          {
+            "name": "test_internal_person",
+            "sourceTableType": "entity",
+            "description": "test internal person",
+            "idCode": "P",
+            "primaryKeyFieldName": "test_internal_person_id",
+            "primaryKeyFieldLength": 36,
+            "lastUpdatedAtTimeFieldName": "last_updated_at_dttm",
+            "recordIdFieldName": "test_internal_person_id",
+            "recordIdFieldLength": 36,
+            "inputFields": [
+              {
+                "name": "forename",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "surname",
+                "dataType": "STRING",
+                "length": 32
+              },
+              {
+                "name": "date_of_birth",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "ssn",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "gender",
+                "dataType": "REFERENCE_DATA",
+                "length": 20
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "test_internal_phone",
+            "sourceTableType": "child",
+            "description": "Test Internal Phone",
+            "idCode": "T",
+            "primaryKeyFieldName": "test_internal_phone_id",
+            "primaryKeyFieldLength": 36,
+            "recordIdFieldName": "test_internal_person_id",
+            "recordIdFieldLength": 36,
+            "inputFields": [
+              {
+                "name": "phone_number",
+                "dataType": "STRING",
+                "length": 20
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "test_internal_email",
+            "sourceTableType": "child",
+            "description": "Test Internal Email",
+            "idCode": "E",
+            "primaryKeyFieldName": "test_internal_email_id",
+            "primaryKeyFieldLength": 36,
+            "recordIdFieldName": "test_internal_person_id",
+            "recordIdFieldLength": 36,
+            "inputFields": [
+              {
+                "name": "email_address",
+                "dataType": "STRING",
+                "length": 64
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "test_internal_address",
+            "sourceTableType": "child",
+            "description": "Test Internal Address",
+            "idCode": "A",
+            "primaryKeyFieldName": "test_internal_address_id",
+            "primaryKeyFieldLength": 36,
+            "recordIdFieldName": "test_internal_person_id",
+            "recordIdFieldLength": 36,
+            "inputFields": [
+              {
+                "name": "address_line_1",
+                "dataType": "STRING",
+                "length": 200
+              },
+              {
+                "name": "city",
+                "dataType": "STRING",
+                "length": 20
+              },
+              {
+                "name": "state",
+                "dataType": "STRING",
+                "length": 2
+              },
+              {
+                "name": "zip",
+                "dataType": "STRING",
+                "length": 12
+              },
+              {
+                "name": "address_start_date",
+                "dataType": "TIMESTAMP"
+              },
+              {
+                "name": "address_end_date",
+                "dataType": "TIMESTAMP"
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          }
+        ],
+        "deleteTableName": "test_internal_person"
+      },
+      {
+        "name": "test_external",
+        "type": "external",
+        "inputTable": "test_external",
+        "idCode": "TE",
+        "inputTables": [
+          {
+            "name": "test_external",
+            "sourceTableType": "entity",
+            "description": "Test External",
+            "idCode": "X",
+            "primaryKeyFieldName": "test_external_id",
+            "lastUpdatedAtTimeFieldName": "last_updated_at_dttm",
+            "recordIdFieldName": "test_external_id",
+            "inputFields": [
+              {
+                "name": "forename",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "middlename",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "lastname",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "ssn",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "date_of_birth",
+                "dataType": "STRING",
+                "length": 36
+              }
+            ],
+            "recordIdFieldLength": 64,
+            "primaryKeyFieldLength": 64,
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "test_external_friend",
+            "sourceTableType": "child",
+            "description": "Test External Friend",
+            "idCode": "F",
+            "primaryKeyFieldName": "test_external_friend_id",
+            "lastUpdatedAtTimeFieldName": "last_updated_at_dttm",
+            "recordIdFieldName": "test_external_id",
+            "inputFields": [
+              {
+                "name": "forename",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "middlename",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "lastname",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "ssn",
+                "dataType": "STRING",
+                "length": 36
+              },
+              {
+                "name": "date_of_birth",
+                "dataType": "STRING",
+                "length": 36
+              }
+            ],
+            "recordIdFieldLength": 64,
+            "primaryKeyFieldLength": 64,
+            "primaryKeyFieldDataType": "STRING"
+          }
+        ]
+      },
+      {
+        "name": "thp_report",
+        "type": "internal",
+        "inputTable": "thp_report",
+        "idCode": "TH",
+        "deleteTableName": "thp_report",
+        "inputTables": [
+          {
+            "name": "thp_report",
+            "sourceTableType": "entity",
+            "description": "THP Investigation Report",
+            "idCode": "P",
+            "primaryKeyFieldName": "thp_report_id",
+            "primaryKeyFieldLength": 36,
+            "lastUpdatedAtTimeFieldName": "last_updated_at_dttm",
+            "recordIdFieldName": "thp_report_id",
+            "recordIdFieldLength": 36,
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "invperson",
+            "sourceTableName": "",
+            "sourceTableType": "child",
+            "description": "Involved Person",
+            "idCode": "I",
+            "primaryKeyFieldName": "list_parent_id",
+            "primaryKeyFieldLength": 36,
+            "recordIdFieldName": "list_parent_id",
+            "recordIdFieldLength": 36,
+            "tableFilter": "list_parent_id ^= ''",
+            "inputFields": [
+              {
+                "name": "mx_invpersonsubfirstname",
+                "dataType": "STRING",
+                "length": 50
+              },
+              {
+                "name": "mx_invpersonsublastname",
+                "dataType": "STRING",
+                "length": 50
+              },
+              {
+                "name": "mx_invpersonsubsex",
+                "dataType": "STRING",
+                "length": 10
+              },
+              {
+                "name": "mx_invpersonsubdob",
+                "dataType": "STRING",
+                "length": 20
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          },
+          {
+            "name": "placeholder_ident",
+            "sourceTableName": "placeholder_ident",
+            "sourceTableType": "child",
+            "description": "Identifications",
+            "idCode": "D",
+            "primaryKeyFieldName": "placeholder_ident_id",
+            "primaryKeyFieldLength": 36,
+            "recordIdFieldName": "list_parent_id",
+            "recordIdFieldLength": 36,
+            "tableFilter": "list_parent_id ^= ''",
+            "inputFields": [
+              {
+                "name": "id_number",
+                "dataType": "STRING",
+                "length": 100
+              },
+              {
+                "name": "id_type",
+                "dataType": "STRING",
+                "length": 100
+              }
+            ],
+            "primaryKeyFieldDataType": "STRING"
+          }
+        ]
+      }
+    ]
+  }
+}

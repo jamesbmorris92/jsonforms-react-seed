@@ -1,32 +1,257 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://solutionfactory.com/rteng_vi_batch_solution_factory_configuration.v0.6.schema.json",
+  "title": "RTENG VI Batch Solution Factory Configuration",
+  "description": "Schema that describes the configuration for the RTENG VI Batch Solution Factory.",
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "description": {
-      "title": "Long Description",
+    "schemaVersion": {
+      "description": "The version number of the schema that was used to create the configuration.",
       "type": "string"
     },
-    "done": {
-      "type": "boolean"
-    },
-    "due_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "rating": {
-      "type": "integer",
-      "maximum": 5
-    },
-    "recurrence": {
-      "type": "string",
-      "enum": ["Never", "Daily", "Weekly", "Monthly"]
-    },
-    "recurrence_interval": {
-      "type": "integer"
+    "rtengViBatchSolutionFactoryConfiguration": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "sourceEntities": {
+          "description": "This contains information about the entities within Visual Investigator (VI) that are used as sources of data for entity resolution.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/sourceEntity"
+          }
+        }
+      },
+      "required": [
+        "sourceEntities"
+      ]
     }
   },
-  "required": ["name", "due_date"]
+  "required": [
+    "schemaVersion",
+    "rtengViBatchSolutionFactoryConfiguration"
+  ],
+  "definitions": {
+    "sourceEntity": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the source entity type in Visual Investigator. This is used as the document type within the RTENG configuration.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of Visual Investigator object, this should be 'internal' or 'external'.",
+          "type": "string",
+          "enum": [
+            "external",
+            "internal"
+          ]
+        },
+        "inputTable": {
+          "description": "The name of the entity table for this entity.",
+          "type": "string"
+        },
+        "versionNumberFieldName": {
+          "description": "The name of the field that records a version number for the entity. If this is left blank the Last Updated At Time Field Name for the Input Table is used.",
+          "type": "string"
+        },
+        "idCode": {
+          "description": "A prefix that is prepended to the key fields to identify where each record comes from. This must be unique to this source.",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "deleteTableName": {
+          "description": "The name of the entity's deletes table.",
+          "type": "string"
+        },
+        "inputTables": {
+          "description": "This contains information about which tables within each source contain information that can be used in entity resolution. If using child entity tables, the parent entity tables must also be defined as they contain information such as the version number and last updated date.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/inputTable"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "inputTable",
+        "idCode",
+        "inputTables"
+      ]
+    },
+    "inputTable": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the table that contains the data that will be used in entity resolution. This could be the actual database table or just a handle for further reference.",
+          "type": "string"
+        },
+        "sourceTableName": {
+          "description": "The actual database table name. This only needs populating where it differs from the name.",
+          "type": "string"
+        },
+        "sourceTableType": {
+          "description": "Whether the table is registered as an 'entity', or 'child' entity in Visual Investigator.",
+          "type": "string",
+          "enum": [
+            "entity",
+            "child"
+          ]
+        },
+        "description": {
+          "description": "A description of the source table. This is used in the UI as a 'role' field for the relationships.",
+          "type": "string"
+        },
+        "tableFilter": {
+          "description": "A filter that can be applied to the sourceTableName dataabse table in the input prep. Filtering the parent input tables does filter the child input tables.",
+          "type": "string"
+        },
+        "idCode": {
+          "description": "A suffix that is used in conjunction with the idCode in sourceEntities to identify where each record comes from. This must be unique within the source.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1
+        },
+        "primaryKeyFieldName": {
+          "description": "Name of the tables primary key field.",
+          "type": "string"
+        },
+        "primaryKeyFieldDataType": {
+          "$ref": "#/definitions/viPrimaryKeyFieldDataType"
+        },
+        "primaryKeyFieldLength": {
+          "description": "When populated overrides the default value for the primary key field length. This is used to define the source_table_id and document_id fields lengths within the system.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "lastUpdatedAtTimeFieldName": {
+          "description": "The name of the datetime field that records when the last change was made to the record in the Visual Investigator table.",
+          "type": "string"
+        },
+        "recordIdFieldName": {
+          "description": "The field that will be used as the record_id in RTENG. This is often the party ID representing a person or organisation reference. Critically this joins between tables of the same source if data for a single party is split between tables (e.g. the name is in a different table to the address).",
+          "type": "string"
+        },
+        "recordIdFieldLength": {
+          "description": "When populated overrides the default value for the record ID field length in characters.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "recordIdCode": {
+          "description": "This code is used to prefix the record ID. If left blank record id has no prefix. This is required if multiple parties exist within the same source and can be used to differentiate between them when joining tables.",
+          "type": "string"
+        },
+        "inputFields": {
+          "description": "This contains information about the columns within each table that will be used in entity resolution. The type and length information is the CAS datatypes and is the type you want the data to be once loaded into CAS rather than the type in the database.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inputField"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "idCode",
+        "sourceTableType",
+        "description",
+        "primaryKeyFieldName",
+        "primaryKeyFieldDataType",
+        "recordIdFieldName"
+      ],
+      "if": {
+        "properties": {
+          "sourceTableType": {
+            "const": "entity"
+          }
+        },
+        "required": ["sourceTableType"]
+      },
+      "then": {
+        "required": ["lastUpdatedAtTimeFieldName"]
+      },
+      "if": {
+        "properties": {
+          "primaryKeyFieldDataType": {
+            "const": "STRING"
+          }
+        },
+        "required": ["primaryKeyFieldDataType"]
+      },
+      "then": {
+        "required": ["primaryKeyFieldLength"]
+      }
+    },
+    "inputField": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the field containing information used in entity resolution.",
+          "type": "string"
+        },
+        "dataType": {
+          "$ref": "#/definitions/viSourceFieldDataType"
+        },
+        "length": {
+          "$ref": "#/definitions/viFieldLength"
+        }
+      },
+      "required": [
+        "name",
+        "dataType"
+      ],
+      "if": {
+        "properties": {
+          "dataType": {
+            "const": "STRING"
+          }
+        },
+        "required": ["dataType"]
+      },
+      "then": {
+        "required": ["length"]
+      }
+    },
+    "viPrimaryKeyFieldDataType": {
+      "description": "The data type of the primary key field in VI.",
+      "type": "string",
+      "enum": [
+        "STRING",
+        "SMALLINT",
+        "INTEGER",
+        "LONG",
+        "NUMERIC"
+      ]
+    },
+    "viSourceFieldDataType": {
+      "description": "The data type of the field in VI.",
+      "type": "string",
+      "enum": [
+        "STRING",
+        "BOOLEAN",
+        "SMALLINT",
+        "INTEGER",
+        "LONG",
+        "FLOAT",
+        "DOUBLE",
+        "NUMERIC",
+        "DATE",
+        "TIMESTAMP",
+        "TIMESTAMP_WITH_TIME_ZONE",
+        "REFERENCE_DATA"
+      ]
+    },
+    "viFieldLength": {
+      "description": "The length of the field in VI.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 256
+    }
+  }
 }

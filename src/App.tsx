@@ -14,6 +14,7 @@ import {
 import RatingControl from './RatingControl';
 import ratingControlTester from './ratingControlTester';
 import { makeStyles } from '@mui/styles';
+import initialData from './test_data.json';
 
 const useStyles = makeStyles({
   container: {
@@ -40,14 +41,6 @@ const useStyles = makeStyles({
     padding: '1rem',
   },
 });
-
-const initialData = {
-  name: 'Send email to Adrian',
-  description: 'Confirm if you have passed the subject\nHereby ...',
-  done: true,
-  recurrence: 'Daily',
-  rating: 3,
-};
 
 const renderers = [
   ...materialRenderers,
